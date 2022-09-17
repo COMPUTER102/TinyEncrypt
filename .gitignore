@@ -33,3 +33,4 @@
 
 # binary output
 .\release
+*.win
