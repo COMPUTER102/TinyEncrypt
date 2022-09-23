@@ -1,0 +1,27 @@
+name: Dev Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  
+  build:
+      strategy:
+         matrix:
+            os: [windows-latest, macos-latest, macos-12, ubuntu-20.04]
+
+      runs-on: {{ matrix.os }}
+
+      steps:
+        - uses: actions/checkout@v3
+        - name: configure
+          run: ./configure
+        - name: make
+          run: make
+        - name: make check
+          run: make check
+        - name: make distcheck
+          run: make distcheck
